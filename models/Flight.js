@@ -8,7 +8,14 @@ exports.flightModel = [{
 {
     "id": 2,
     "title":"flight to london",
-    "time":"1pm",
+    "time":"4pm",
+    "price":26000,
+    "date":"26-06-2022"
+},
+{
+    "id": 3,
+    "title":"flight to canada",
+    "time":"8am",
     "price":26000,
     "date":"26-06-2022"}
 ];

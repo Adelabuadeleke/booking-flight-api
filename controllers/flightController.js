@@ -3,18 +3,6 @@ const FlightsData  = 'data/flights.json';
 // const FData = JSON.stringify(FlightsData);
 const models = require("../models/Flight");
 
-
-// Get a Single Flight
-// Update/Eidt a Single Flight
-// Delete Flight
-// const fetchFlights = () => {
-//     try {
-//         const flightString = fs.readFileSync(FlightsData).toString()
-//         return JSON.parse(flightString);
-//     } catch (e) {
-//     }
-// }
-
 // Get All Flight
 exports.get_all_flights = (req, res) => {
     try {
@@ -36,4 +24,34 @@ exports.post_single_flight = async(req, res) => {
     }
 }
 
+// Get a Single Flight
+exports.get_single_flight = async(req, res) => {
+    try{
+        const flights = models.flightModel
+        const result = flights.find((flight)=> flight.id == req.params.id)
+        res.status(200).json(result);
+    } catch(err) {
+        console.log(err);
+    }
+}
 
+// Update/Eidt a Single Flight
+exports.patch_single_flight = async(req, res) => {
+    try {
+        const body = req.body
+        const flights = models.flightModel
+        
+        for (const flight of flights) {
+            if(flight.id == req.params.id) {
+                body;
+                break;
+            } else {
+                return res.status(404).send('not found')
+            }
+        }
+        return flights
+    } catch (err) {
+        return res.status(500).send(err)
+    }
+}
+// Delete Flight
